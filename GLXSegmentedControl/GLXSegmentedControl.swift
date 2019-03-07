@@ -11,7 +11,7 @@ import UIKit
 extension UILabel {
     
     func fontFitsCurrentFrame(_ font:UIFont) -> Bool {
-        let attributes = [NSFontAttributeName:font]
+        let attributes = [NSAttributedString.Key.font:font]
         if let size = self.text?.boundingRect(with: CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: attributes, context: nil) {
             if size.width > frame.size.width {
                 return false
@@ -54,7 +54,7 @@ open class GLXSegmentedControl: UIControl {
                 return segment.index
             }
             else {
-                return UISegmentedControlNoSegment
+                return UISegmentedControl.noSegment
             }
         }
         set(newIndex) {
@@ -162,7 +162,7 @@ open class GLXSegmentedControl: UIControl {
         assert(index >= 0 && index < self.segments.count, "Index (\(index)) is out of range")
         
         if index == self.selectedSegmentIndex {
-            self.selectedSegmentIndex = UISegmentedControlNoSegment
+            self.selectedSegmentIndex = UISegmentedControl.noSegment
         }
         self.resetSegmentIndices(withIndex: index, by: -1)
         let segment = self.segments.remove(at: index)
